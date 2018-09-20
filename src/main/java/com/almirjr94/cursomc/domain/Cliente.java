@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
 import com.almirjr94.cursomc.domain.enums.TipoCliente;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @SuppressWarnings("serial")
 @Entity
@@ -21,6 +22,7 @@ public class Cliente extends AbstractEntity<Integer> {
 	private String cpfOuCnpj;
 	private Integer tipo;
 	
+	@JsonManagedReference
 	@OneToMany(mappedBy = "cliente")
 	private List<Endereco> enderecos = new ArrayList<>();
 	

@@ -6,12 +6,15 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.OneToMany;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @SuppressWarnings("serial")
 @Entity
 public class Estado extends AbstractEntity<Integer> {
 
 	private String nome;
 	
+	@JsonBackReference
 	@OneToMany(mappedBy="estado")
 	private List<Cidade> cidades = new ArrayList<>();
 	

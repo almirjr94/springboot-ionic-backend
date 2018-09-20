@@ -4,6 +4,8 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 @SuppressWarnings("serial")
 @Entity
 public class Endereco extends AbstractEntity<Integer>{
@@ -14,6 +16,7 @@ public class Endereco extends AbstractEntity<Integer>{
 	private String bairro;
 	private String cep;
 	
+	@JsonBackReference
 	@ManyToOne
 	@JoinColumn(name="cliente_id")
 	private Cliente cliente;
