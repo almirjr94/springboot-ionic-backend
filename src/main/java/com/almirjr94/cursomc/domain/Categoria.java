@@ -7,15 +7,12 @@ import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonManagedReference;
-
 @Entity
 public class Categoria extends AbstractEntity<Integer> implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	public String nome;
 
-	@JsonManagedReference
 	@ManyToMany(mappedBy = "categorias")
 	private List<Produto> produtos = new ArrayList<>();
 
