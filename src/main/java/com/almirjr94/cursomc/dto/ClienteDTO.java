@@ -8,8 +8,10 @@ import javax.validation.constraints.NotEmpty;
 import org.hibernate.validator.constraints.Length;
 
 import com.almirjr94.cursomc.domain.Cliente;
+import com.almirjr94.cursomc.service.validation.ClienteUpdate;
 
 @SuppressWarnings("serial")
+@ClienteUpdate
 public class ClienteDTO implements Serializable {
 	
 	private Integer id;
