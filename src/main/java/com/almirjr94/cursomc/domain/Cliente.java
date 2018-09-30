@@ -51,7 +51,7 @@ public class Cliente extends AbstractEntity<Integer> {
 		this.nome = nome;
 		this.email = email;
 		this.cpfOuCnpj = cpfOuCnpj;
-		this.tipo = tipo.getId();
+		this.tipo = (tipo == null)? null : tipo.getId();
 	}
 
 	public String getNome() {
