@@ -5,25 +5,25 @@ import java.io.Serializable;
 @SuppressWarnings("serial")
 public class FieldMessage implements Serializable {
 	
-	private String fildName;
+	private String fieldName;
 	private String message;
 	
 	public FieldMessage() {}
 	
 	
 	public FieldMessage(String fildName, String message) {
-		this.fildName = fildName;
+		this.fieldName = fildName;
 		this.message = message;
 	}
 
 
 
-	public String getFildName() {
-		return fildName;
+	public String getFieldName() {
+		return fieldName;
 	}
 
 	public void setFildName(String fildName) {
-		this.fildName = fildName;
+		this.fieldName = fildName;
 	}
 
 	public String getMessage() {
