@@ -15,33 +15,42 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 @SuppressWarnings("serial")
 @Entity
-public class Pedido extends AbstractEntity<Integer>{
+public class Pedido extends AbstractEntity<Integer> {
 
-	@JsonFormat(pattern="dd/MM/yyyy HH:mm:ss")
+	@JsonFormat(pattern = "dd/MM/yyyy HH:mm:ss")
 	private Date instante;
-	
 
-	@OneToOne(cascade=CascadeType.ALL, mappedBy="pedido")
+	@OneToOne(cascade = CascadeType.ALL, mappedBy = "pedido")
 	private Pagamento pagamento;
-	
 
 	@ManyToOne
-	@JoinColumn(name="cliente_id")
+	@JoinColumn(name = "cliente_id")
 	private Cliente cliente;
-	
+
 	@ManyToOne
-	@JoinColumn(name="endereco_de_entrega_id")
+	@JoinColumn(name = "endereco_de_entrega_id")
 	private Endereco enderecoDeEntrega;
-	
+
 	@OneToMany(mappedBy = "id.pedido")
 	private Set<ItemPedido> itens = new HashSet<>();
-	
-	public Pedido() {}
-	
+
+	public Pedido() {
+	}
+
 	public Pedido(Date instante, Cliente cliente, Endereco enderecoDeEntrega) {
 		this.instante = instante;
 		this.cliente = cliente;
 		this.enderecoDeEntrega = enderecoDeEntrega;
+	}
+
+	public double getValorTotal() {
+
+		double soma = 0D;
+
+		for (ItemPedido itemPedido : itens) {
+			soma += itemPedido.getSubTotal();
+		}
+		return soma;
 	}
 
 	public Date getInstante() {
@@ -83,11 +92,5 @@ public class Pedido extends AbstractEntity<Integer>{
 	public void setItens(Set<ItemPedido> itens) {
 		this.itens = itens;
 	}
-	
-	
 
-
-
-	
-	
 }

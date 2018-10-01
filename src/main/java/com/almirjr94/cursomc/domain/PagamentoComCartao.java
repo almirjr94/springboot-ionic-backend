@@ -3,9 +3,11 @@ package com.almirjr94.cursomc.domain;
 import javax.persistence.Entity;
 
 import com.almirjr94.cursomc.domain.enums.EstadoPagamento;
+import com.fasterxml.jackson.annotation.JsonTypeName;
 
 @SuppressWarnings("serial")
 @Entity
+@JsonTypeName("pagamentoComCartao")
 public class PagamentoComCartao extends Pagamento {
 
 	private Integer numeroDeParcelas;

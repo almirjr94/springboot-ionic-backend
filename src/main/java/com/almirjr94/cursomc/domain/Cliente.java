@@ -85,10 +85,6 @@ public class Cliente extends AbstractEntity<Integer> {
 		return TipoCliente.toEnum(tipo);
 	}
 
-	public void setTipo(TipoCliente tipo) {
-		this.tipo = tipo.getId();
-	}
-
 	public List<Endereco> getEnderecos() {
 		return enderecos;
 	}
