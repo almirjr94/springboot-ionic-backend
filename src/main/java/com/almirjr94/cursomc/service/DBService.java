@@ -63,20 +63,11 @@ public class DBService {
 	public void instantiateTestDatabase() throws ParseException {
 		Categoria cat1 = new Categoria("Informática");
 		Categoria cat2 = new Categoria("Escritório");
-		Categoria cat3 = new Categoria("Escritório1");
-		Categoria cat4 = new Categoria("Escritório2");
-		Categoria cat5 = new Categoria("Escritório3");
-		Categoria cat6 = new Categoria("Escritório4");
-		Categoria cat7 = new Categoria("Escritório5");
-		Categoria cat8 = new Categoria("Escritório6");
-		Categoria cat9 = new Categoria("Escritório7");
-		Categoria cat10 = new Categoria("Escritório8");
-		Categoria cat11 = new Categoria("Escritório9");
-		Categoria cat12 = new Categoria("Escritório10");
-		Categoria cat13 = new Categoria("Escritório11");
-		Categoria cat14 = new Categoria("Escritório12");
-		Categoria cat15 = new Categoria("Escritório13");
-		Categoria cat16 = new Categoria("Escritório14");
+		Categoria cat3 = new Categoria("Cama mesa e banho");
+		Categoria cat4 = new Categoria("Eletrônicos");
+		Categoria cat5 = new Categoria("Jardinagem");
+		Categoria cat6 = new Categoria("Decoração");
+		Categoria cat7 = new Categoria("Perfumaria");
 		
 		
 		Produto p1 = new Produto("Computador", 2000.00);
@@ -118,7 +109,7 @@ public class DBService {
 		p10.getCategorias().addAll(Arrays.asList(cat6));
 		p11.getCategorias().addAll(Arrays.asList(cat7));
 				
-		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7,cat8,cat9,cat10,cat11,cat12,cat13,cat14,cat15,cat16));
+		categoriaRepository.saveAll(Arrays.asList(cat1,cat2,cat3,cat4,cat5,cat6,cat7));
 		produtoRepository.saveAll(Arrays.asList(p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11));
 		
 		
