@@ -4,14 +4,17 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.ElementCollection;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.OneToMany;
 
+import com.almirjr94.cursomc.domain.enums.Perfil;
 import com.almirjr94.cursomc.domain.enums.TipoCliente;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -36,6 +39,11 @@ public class Cliente extends AbstractEntity<Integer> {
 	@CollectionTable(name="TELEFONE")
 	private Set<String> telefones = new HashSet<>();
 	
+	@ElementCollection(fetch=FetchType.EAGER)
+	@CollectionTable(name="PERFIS")
+	private Set<Integer> perfis = new HashSet<>();
+	
+	
 	@JsonIgnore
 	@OneToMany(mappedBy="cliente")
 	private List<Pedido>pedidos = new ArrayList<>();
@@ -52,7 +60,9 @@ public class Cliente extends AbstractEntity<Integer> {
 		this.tipo = tipo;
 	}
 
-	public Cliente() {}
+	public Cliente() {
+		addPerfil(Perfil.CLIENTE);
+	}
 
 	public Cliente(String nome, String email, String cpfOuCnpj, TipoCliente tipo, String senha) {
 		this.nome = nome;
@@ -60,6 +70,7 @@ public class Cliente extends AbstractEntity<Integer> {
 		this.cpfOuCnpj = cpfOuCnpj;
 		this.tipo = (tipo == null)? null : tipo.getId();
 		this.senha = senha;
+		addPerfil(Perfil.CLIENTE);
 	}
 
 	public String getNome() {
@@ -112,6 +123,14 @@ public class Cliente extends AbstractEntity<Integer> {
 
 	public void setTelefones(Set<String> telefones) {
 		this.telefones = telefones;
+	}
+	
+	public Set<Perfil> gePerfils(){
+		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
+	}
+	
+	public void addPerfil(Perfil perfil) {
+		perfis.add(perfil.getId());
 	}
 	
 	
