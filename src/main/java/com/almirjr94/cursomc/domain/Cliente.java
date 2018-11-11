@@ -125,7 +125,7 @@ public class Cliente extends AbstractEntity<Integer> {
 		this.telefones = telefones;
 	}
 	
-	public Set<Perfil> gePerfils(){
+	public Set<Perfil> getPerfils(){
 		return perfis.stream().map(x -> Perfil.toEnum(x)).collect(Collectors.toSet());
 	}
 	
