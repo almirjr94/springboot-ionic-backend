@@ -9,6 +9,8 @@ import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Sort.Direction;
+import org.springframework.security.access.method.P;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.almirjr94.cursomc.domain.Cidade;
@@ -24,6 +26,10 @@ import com.almirjr94.cursomc.service.exception.ObjectNotFoundException;
 
 @Service
 public class ClienteService {
+	
+	@Autowired
+	private BCryptPasswordEncoder pe;
+	
 
 	@Autowired
 	private ClienteRepository clienteRepository;
@@ -71,12 +77,12 @@ public class ClienteService {
 	}
 
 	public Cliente fromDTO(ClienteDTO clienteDTO) {
-		return new Cliente(clienteDTO.getNome(), clienteDTO.getEmail(), null, null);
+		return new Cliente(clienteDTO.getNome(), clienteDTO.getEmail(), null, null, null);
 	}
 
 	public Cliente fromDTO(ClienteNewDTO clienteNewDTO) {
 		Cliente cliente = new Cliente(clienteNewDTO.getNome(), clienteNewDTO.getEmail(), clienteNewDTO.getCpfOuCnpj(),
-				TipoCliente.toEnum(clienteNewDTO.getTipo()));
+				TipoCliente.toEnum(clienteNewDTO.getTipo()),pe.encode(clienteNewDTO.getSenha()));
 		Cidade cidade = new Cidade();
 		cidade.setId(clienteNewDTO.getCidadeId());
 		Endereco endereco = new Endereco(clienteNewDTO.getLogradouro(), clienteNewDTO.getNumero(),
